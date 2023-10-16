@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2daw0iqjjywe"]
+
+[ext_resource type="PackedScene" uid="uid://fdlxo75d2rod" path="res://Scenes/Characters/player.tscn" id="1_sj7s6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vb521"]
+albedo_color = Color(0.458824, 0.458824, 0.458824, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a3f0e"]
+material = SubResource("StandardMaterial3D_vb521")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8ipng"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pq2cj"]
+
+[node name="Level" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_sj7s6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.41523, 5.26721)
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(62.2341, 0, 0, 0, 1.25013, 0, 0, 0, 50.5662, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_a3f0e")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_8ipng")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.827061, 0.562112, 0, -0.562112, 0.827061, 0, 18.0007, 16.1436)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.12395, 0)
+mesh = SubResource("BoxMesh_pq2cj")
