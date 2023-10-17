@@ -2,18 +2,22 @@
 
 [ext_resource type="Script" path="res://Scenes/Characters/player.gd" id="1_owhbk"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_baok0"]
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_11kdu"]
 
-[node name="Player" type="CharacterBody3D"]
-script = ExtResource("1_owhbk")
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_baok0"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_baok0")
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER")]
+script = ExtResource("1_owhbk")
+CAMERA_CONTROLLER = NodePath("CameraController/Camera3D")
+
+[node name="CameraController" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0.175767)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_11kdu")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0.175767)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_baok0")
+skeleton = NodePath("../..")
