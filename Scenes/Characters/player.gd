@@ -7,8 +7,7 @@ const JUMP_VELOCITY = 4.5
 @export var MOUSE_SENSITIVITY : float = 0.3
 @export var TILT_LOWER_LIMIT := deg_to_rad(-90.0)
 @export var TILT_UPPER_LIMIT := deg_to_rad(90.0)
-@export var CAMERA_CONTROLLER : Camera3D
-
+@export var CAMERA_CONTROLLER : Node3D
 
 var _mouse_input : bool = false
 var _mouse_rotation : Vector3
