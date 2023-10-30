@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://drbc4mlu2pion"]
+
+[ext_resource type="Script" path="res://Scenes/Objects/copy_object.gd" id="1_2ftej"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lk6n2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_risyl"]
+albedo_color = Color(0.188235, 1, 0.345098, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p1ppy"]
+material = SubResource("StandardMaterial3D_risyl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tqewf"]
+transparency = 1
+albedo_color = Color(0.517647, 0.690196, 0.00784314, 0.258824)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7t4p7"]
+material = SubResource("StandardMaterial3D_tqewf")
+
+[node name="green_cube" type="RigidBody3D"]
+script = ExtResource("1_2ftej")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_lk6n2")
+
+[node name="Normal" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_p1ppy")
+skeleton = NodePath("../MeshTransparency")
+
+[node name="MeshTransparency" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_7t4p7")

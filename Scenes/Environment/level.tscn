@@ -1,6 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2daw0iqjjywe"]
+[gd_scene load_steps=10 format=3 uid="uid://b2daw0iqjjywe"]
 
 [ext_resource type="PackedScene" uid="uid://fdlxo75d2rod" path="res://Scenes/Characters/player.tscn" id="1_sj7s6"]
+[ext_resource type="PackedScene" uid="uid://bw7d85psgg340" path="res://Scenes/Objects/red_cube.tscn" id="2_5k2wg"]
+[ext_resource type="PackedScene" uid="uid://drbc4mlu2pion" path="res://Scenes/Objects/green_cube.tscn" id="2_a8xfv"]
+[ext_resource type="PackedScene" uid="uid://csdcffe0sjepj" path="res://Scenes/Objects/blue_cube.tscn" id="4_uy2gw"]
 
 [sub_resource type="Environment" id="Environment_k625w"]
 
@@ -13,10 +16,6 @@ albedo_color = Color(0, 0.443137, 0.447059, 1)
 material = SubResource("StandardMaterial3D_vb521")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8ipng"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_e28hq"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_3opfy"]
 
 [node name="Level" type="Node3D"]
 
@@ -39,11 +38,11 @@ mesh = SubResource("BoxMesh_a3f0e")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
 shape = SubResource("BoxShape3D_8ipng")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.638346, 0)
-mesh = SubResource("BoxMesh_e28hq")
+[node name="green_cube" parent="." instance=ExtResource("2_a8xfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.687082, 2.29636, 1.18096)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+[node name="red_cube" parent="." instance=ExtResource("2_5k2wg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.90152, 3.47407, -0.425395)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("BoxShape3D_3opfy")
+[node name="blue_cube" parent="." instance=ExtResource("4_uy2gw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.72269, 2.05963, -1.49709)
