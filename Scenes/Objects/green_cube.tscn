@@ -19,6 +19,7 @@ material = SubResource("StandardMaterial3D_tqewf")
 
 [node name="green_cube" type="RigidBody3D"]
 script = ExtResource("1_2ftej")
+metadata/Object_Name = "green_cube"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_lk6n2")

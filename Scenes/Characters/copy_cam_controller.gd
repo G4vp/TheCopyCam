@@ -1,8 +1,9 @@
-extends CollisionShape3D
+extends Node3D
 
 
 @export var Marker: Marker3D
 @export var CAMERA_RAYCAST : RayCast3D
+@export var FLASH_PARTICLES : GPUParticles3D
 
 var _item_selection_num : int = 0
 var _selection_mode : bool = false
@@ -25,7 +26,8 @@ func _input(event):
 		if _selection_mode:
 			if len(photos_taken) > 0  and photos_taken[_item_selection_num].mesh_transparency_enabled:
 				photos_taken[_item_selection_num].object_release()
-				photos_taken[_item_selection_num].reparent(get_parent().get_parent())
+				print(photos_taken[_item_selection_num].get_meta("Object_Name"))
+				photos_taken[_item_selection_num].reparent(self.owner.get_parent())
 				photos_taken.remove_at(_item_selection_num)
 				_item_selection_num = 0
 			_selection_mode = false	
@@ -38,6 +40,7 @@ func _input(event):
 	
 	if event.is_action_pressed("action_1"):
 		# Tirar foto
+		FLASH_PARTICLES.emitting = true
 		if CAMERA_RAYCAST.is_colliding():
 			var object_to_copy = CAMERA_RAYCAST.get_collider() as CopyObject
 			if object_to_copy:
