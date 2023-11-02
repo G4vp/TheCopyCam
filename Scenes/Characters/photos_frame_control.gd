@@ -40,7 +40,7 @@ func reset_texture_rect(photos_size:int,max_photos:int):
 func create_texture_rect_child(index: int) -> TextureRect:
 	var scene = preload("res://Scenes/Control/photos_frames.tscn")
 	var instante = scene.instantiate()
-	var node_position = Vector2(index*100+(get_viewport().size.x/40),get_viewport().size.y/60)
+	var node_position = Vector2((index*100)+60,60)
 
 	instante.texture = load("res://Assets/Images/CameraFrame.png")
 	instante.position = node_position

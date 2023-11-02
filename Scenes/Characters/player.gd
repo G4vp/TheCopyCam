@@ -3,7 +3,7 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
-@export var MOUSE_SENSITIVITY : float = 0.3
+@export var MOUSE_SENSITIVITY : float = 0.6
 @export var CAMERA_CONTROLLER : Node3D
 
 

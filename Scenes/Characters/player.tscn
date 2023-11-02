@@ -46,10 +46,8 @@ transform = Transform3D(0.993955, -0.109786, 1.86265e-09, -0.00395979, -0.035850
 [node name="PhotosFrameControl" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 440.0
-offset_top = 24.0
-offset_right = 480.0
-offset_bottom = 64.0
+scale = Vector2(0.3, 0.3)
+mouse_filter = 2
 script = ExtResource("4_fpn8k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
