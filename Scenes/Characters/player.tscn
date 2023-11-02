@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://fdlxo75d2rod"]
+[gd_scene load_steps=7 format=3 uid="uid://fdlxo75d2rod"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/player.gd" id="1_owhbk"]
 [ext_resource type="PackedScene" uid="uid://ne5cs2fwwukg" path="res://Scenes/Characters/copy_cam_controller.tscn" id="2_vstre"]
 [ext_resource type="PackedScene" uid="uid://bvmsos1o25l15" path="res://Assets/Models/arms.glb" id="3_7nt2v"]
+[ext_resource type="Script" path="res://Scenes/Characters/photos_frame_control.gd" id="4_fpn8k"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_11kdu"]
 
@@ -42,6 +43,15 @@ transform = Transform3D(0.981107, 0.193464, 0, 0.00697789, -0.0353867, 0.999349,
 [node name="arms2" parent="CameraController/Objects" instance=ExtResource("3_7nt2v")]
 transform = Transform3D(0.993955, -0.109786, 1.86265e-09, -0.00395979, -0.0358501, 0.999349, -0.109715, -0.993309, -0.0360682, 0.59336, -0.0176575, -0.017714)
 
+[node name="PhotosFrameControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 440.0
+offset_top = 24.0
+offset_right = 480.0
+offset_bottom = 64.0
+script = ExtResource("4_fpn8k")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_11kdu")
 
@@ -49,3 +59,6 @@ shape = SubResource("CapsuleShape3D_11kdu")
 visible = false
 mesh = SubResource("CapsuleMesh_baok0")
 skeleton = NodePath("../..")
+
+[connection signal="add_photos_frames" from="CameraController/CopyCamController" to="PhotosFrameControl" method="_on_add_photos_frames"]
+[connection signal="hide_photos_frames" from="CameraController/CopyCamController" to="PhotosFrameControl" method="_on_hide_photos_frames"]
