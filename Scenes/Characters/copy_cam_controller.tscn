@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ne5cs2fwwukg"]
+[gd_scene load_steps=8 format=3 uid="uid://ne5cs2fwwukg"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/copy_cam_controller.gd" id="1_dt8fw"]
 [ext_resource type="PackedScene" uid="uid://cqbw6i5ys45go" path="res://Assets/Models/camera.glb" id="1_jd7b7"]
@@ -11,18 +11,25 @@ gravity = Vector3(0, 0, 0)
 initial_velocity_min = 8.0
 initial_velocity_max = 8.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dtfmq"]
-grow = true
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bkgv5"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_hch7k"]
-material = SubResource("StandardMaterial3D_dtfmq")
+material = SubResource("StandardMaterial3D_bkgv5")
 size = Vector2(0.1, 0.1)
 
-[node name="CopyCamController" node_paths=PackedStringArray("FLASH_PARTICLES") instance=ExtResource("1_jd7b7")]
-script = ExtResource("1_dt8fw")
-FLASH_PARTICLES = NodePath("GPUParticles3D")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_52108"]
+albedo_color = Color(0.729412, 0.223529, 0.356863, 1)
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="1"]
+[sub_resource type="QuadMesh" id="QuadMesh_yj6jv"]
+material = SubResource("StandardMaterial3D_52108")
+size = Vector2(0.1, 0.1)
+
+[node name="CopyCamController" node_paths=PackedStringArray("WHITE_PARTICLES", "RED_PARTICLES") instance=ExtResource("1_jd7b7")]
+script = ExtResource("1_dt8fw")
+WHITE_PARTICLES = NodePath("WhiteParticles")
+RED_PARTICLES = NodePath("RedParticles")
+
+[node name="WhiteParticles" type="GPUParticles3D" parent="." index="1"]
 transform = Transform3D(-0.999904, 0, 0.0138923, 0, 1, 0, -0.0138923, 0, -0.999904, 0, 0.341658, 0.607752)
 emitting = false
 amount = 30
@@ -32,3 +39,14 @@ explosiveness = 1.0
 visibility_aabb = AABB(-1.18653, -1.12944, 0.498443, 2.37305, 2.25887, 0.048768)
 process_material = SubResource("ParticleProcessMaterial_ty2rk")
 draw_pass_1 = SubResource("QuadMesh_hch7k")
+
+[node name="RedParticles" type="GPUParticles3D" parent="." index="2"]
+transform = Transform3D(-0.999904, 0, 0.0138923, 0, 1, 0, -0.0138923, 0, -0.999904, 0, 0.341658, 0.607752)
+emitting = false
+amount = 30
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+visibility_aabb = AABB(-1.18653, -1.12944, 0.498443, 2.37305, 2.25887, 0.048768)
+process_material = SubResource("ParticleProcessMaterial_ty2rk")
+draw_pass_1 = SubResource("QuadMesh_yj6jv")

@@ -24,6 +24,7 @@ func _on_add_photos_frames(photos:Array[CopyObject], max_photos:int):
 func _on_hide_photos_frames(photos:Array[CopyObject], max_photos:int):
 	reset_texture_rect(photos.size(),max_photos)
 	add_texture_rect(photos)
+	
 
 func add_texture_rect(photos:Array[CopyObject]):
 	for i in range(len(photos)):
@@ -36,12 +37,13 @@ func reset_texture_rect(photos_size:int,max_photos:int):
 		var children_texture_rect = self.get_children()[i] as TextureRect
 		var load_path = "res://Assets/Images/CameraFrame.png"
 		children_texture_rect.texture = load(load_path)
+		children_texture_rect.modulate = Color("ffffff68")
+		
 		
 func create_texture_rect_child(index: int) -> TextureRect:
 	var scene = preload("res://Scenes/Control/photos_frames.tscn")
 	var instante = scene.instantiate()
 	var node_position = Vector2((index*100)+60,60)
-
 	instante.texture = load("res://Assets/Images/CameraFrame.png")
 	instante.position = node_position
 	return instante

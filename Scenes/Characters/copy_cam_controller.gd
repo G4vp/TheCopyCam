@@ -6,9 +6,11 @@ signal hide_photos_frames(photos:Array, max_photos:int)
 
 @export var Marker: Marker3D
 @export var CAMERA_RAYCAST : RayCast3D
-@export var FLASH_PARTICLES : GPUParticles3D
+@export var WHITE_PARTICLES : GPUParticles3D
+@export var RED_PARTICLES : GPUParticles3D
 
 @export var MAX_PHOTOS: int = 3
+var PHOTOS_COUNT: int = 0
 
 var _item_selection_num : int = 0
 var _selection_mode : bool = false
@@ -48,16 +50,17 @@ func _input(event):
 	
 	if event.is_action_pressed("action_1"):
 		# Tirar foto
-		
 		if CAMERA_RAYCAST.is_colliding():
 			var object_to_copy = CAMERA_RAYCAST.get_collider() as CopyObject
-			FLASH_PARTICLES.emitting = true
+			
 			if object_to_copy:
-				
-				if len(photos_taken) >= MAX_PHOTOS:
-					photos_taken.remove_at(0)
-				photos_taken.append(object_to_copy.duplicate())
-				add_photos_frames.emit(photos_taken, MAX_PHOTOS)
+				if PHOTOS_COUNT < MAX_PHOTOS:
+					PHOTOS_COUNT += 1
+					WHITE_PARTICLES.emitting = true
+					photos_taken.append(object_to_copy.duplicate())
+					add_photos_frames.emit(photos_taken, MAX_PHOTOS)
+				else:
+					RED_PARTICLES.emitting = true
 	
 	if event.is_action_pressed("inventory_right"):
 		if len(photos_taken) > 0:
