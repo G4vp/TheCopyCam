@@ -2,7 +2,7 @@ class_name CopyCamController
 extends Node3D
 
 signal add_photos_frames(photos:Array, max_photos:int)
-signal hide_photos_frames(photos:Array, max_photos:int)
+signal hide_photos_frames(photos:Array, max_photos:int, photos_put_count:int)
 
 @export var Marker: Marker3D
 @export var CAMERA_RAYCAST : RayCast3D
@@ -11,6 +11,7 @@ signal hide_photos_frames(photos:Array, max_photos:int)
 
 @export var MAX_PHOTOS: int = 3
 var PHOTOS_COUNT: int = 0
+var PHOTOS_PUT_COUNT : int = 0
 
 var _item_selection_num : int = 0
 var _selection_mode : bool = false
@@ -38,8 +39,8 @@ func _input(event):
 				photos_taken[_item_selection_num].reparent(self.owner.get_parent())
 				photos_taken.remove_at(_item_selection_num)
 				_item_selection_num = 0
-				
-				hide_photos_frames.emit(photos_taken,MAX_PHOTOS)
+				PHOTOS_PUT_COUNT += 1
+				hide_photos_frames.emit(photos_taken,MAX_PHOTOS,PHOTOS_PUT_COUNT)
 			_selection_mode = false	
 		
 		elif len(photos_taken) > 0:
@@ -64,11 +65,11 @@ func _input(event):
 				else:
 					RED_PARTICLES.emitting = true
 	
-	if event.is_action_pressed("inventory_right"):
-		if len(photos_taken) > 0:
-			if _selection_mode:
-				object_deslection()
-			_item_selection_num = (_item_selection_num + 1)%len(photos_taken)
+	#if event.is_action_pressed("inventory_right"):
+	#	if len(photos_taken) > 0:
+	#		if _selection_mode:
+	#			object_deslection()
+	#		_item_selection_num = (_item_selection_num + 1)%len(photos_taken)
 		
 
 	if event.is_action_pressed("ui_up"):
