@@ -1,21 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2daw0iqjjywe"]
+[gd_scene load_steps=8 format=3 uid="uid://b2daw0iqjjywe"]
 
 [ext_resource type="PackedScene" uid="uid://fdlxo75d2rod" path="res://Scenes/Characters/player.tscn" id="1_sj7s6"]
 [ext_resource type="PackedScene" uid="uid://bw7d85psgg340" path="res://Scenes/Objects/red_cube.tscn" id="2_5k2wg"]
+[ext_resource type="PackedScene" uid="uid://cedg63m5svkm6" path="res://Scenes/Environment/floor.tscn" id="2_6f1ka"]
 [ext_resource type="PackedScene" uid="uid://drbc4mlu2pion" path="res://Scenes/Objects/green_cube.tscn" id="2_a8xfv"]
 [ext_resource type="PackedScene" uid="uid://csdcffe0sjepj" path="res://Scenes/Objects/blue_cube.tscn" id="4_uy2gw"]
 
 [sub_resource type="Environment" id="Environment_k625w"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_oun7q"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vb521"]
-albedo_color = Color(0, 0.443137, 0.447059, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_a3f0e"]
-material = SubResource("StandardMaterial3D_vb521")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_8ipng"]
 
 [node name="Level" type="Node3D"]
 
@@ -30,14 +23,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 transform = Transform3D(1, 0, 0, 0, 0.827061, 0.562112, 0, -0.562112, 0.827061, 0, 18.0007, 16.1436)
 shadow_enabled = true
 
-[node name="Floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(39.1411, 0, 0, 0, 0.547669, 0, 0, 0, 40.8739, 0, 0, 0)
-mesh = SubResource("BoxMesh_a3f0e")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
-shape = SubResource("BoxShape3D_8ipng")
+[node name="Floor" parent="." instance=ExtResource("2_6f1ka")]
 
 [node name="green_cube" parent="." instance=ExtResource("2_a8xfv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12617, 1.6074, -6)

@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cedg63m5svkm6"]
+
+[ext_resource type="Script" path="res://Scenes/Environment/Floor.gd" id="1_8ojms"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vb521"]
+albedo_color = Color(0, 0.443137, 0.447059, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mdlmg"]
+material = SubResource("StandardMaterial3D_vb521")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t4nqy"]
+size = Vector3(2.36419, 1, 2.06168)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5fghb"]
+
+[node name="Floor" type="MeshInstance3D"]
+transform = Transform3D(39.1411, 0, 0, 0, 0.547669, 0, 0, 0, 40.8739, 0, 0, 0)
+mesh = SubResource("BoxMesh_mdlmg")
+script = ExtResource("1_8ojms")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.99286, 0)
+shape = SubResource("BoxShape3D_t4nqy")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_5fghb")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_player_entered"]

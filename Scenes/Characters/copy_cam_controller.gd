@@ -9,7 +9,7 @@ signal hide_photos_frames(photos:Array, max_photos:int, photos_put_count:int)
 @export var WHITE_PARTICLES : GPUParticles3D
 @export var RED_PARTICLES : GPUParticles3D
 
-@export var MAX_PHOTOS: int = 3
+var MAX_PHOTOS: int
 var PHOTOS_COUNT: int = 0
 var PHOTOS_PUT_COUNT : int = 0
 
@@ -21,7 +21,7 @@ var photos_taken: Array[CopyObject] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	MAX_PHOTOS = (self.owner as Player).MAX_PHOTOS
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,0 +1,73 @@
+[gd_scene load_steps=12 format=3 uid="uid://civ7ghdpn0q43"]
+
+[ext_resource type="PackedScene" uid="uid://bw7d85psgg340" path="res://Scenes/Objects/red_cube.tscn" id="1_2rtbj"]
+[ext_resource type="PackedScene" uid="uid://fdlxo75d2rod" path="res://Scenes/Characters/player.tscn" id="1_s84oy"]
+[ext_resource type="PackedScene" uid="uid://cedg63m5svkm6" path="res://Scenes/Environment/floor.tscn" id="2_a7ab5"]
+
+[sub_resource type="Environment" id="Environment_7e7mk"]
+background_mode = 1
+background_color = Color(0.00392157, 0.00784314, 0.0352941, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_d1qnr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_577m8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_icbxx"]
+albedo_color = Color(0, 0.443137, 0.447059, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ihr71"]
+material = SubResource("StandardMaterial3D_icbxx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o4hur"]
+albedo_color = Color(1, 1, 0.560784, 0.301961)
+emission_enabled = true
+emission = Color(1, 0.960784, 0, 1)
+emission_energy_multiplier = 7.0
+rim_enabled = true
+refraction_enabled = true
+disable_receive_shadows = true
+grow_amount = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_litt5"]
+material = SubResource("StandardMaterial3D_o4hur")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wdqjo"]
+
+[node name="Level1" type="Node3D"]
+
+[node name="red_cube" parent="." instance=ExtResource("1_2rtbj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7e7mk")
+camera_attributes = SubResource("CameraAttributesPractical_d1qnr")
+
+[node name="Player" parent="." instance=ExtResource("1_s84oy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.34059, 12.9777)
+MAX_PHOTOS = 1
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.827061, 0.562112, 0, -0.562112, 0.827061, 0, 18.0007, 16.1436)
+shadow_enabled = true
+
+[node name="Floor" parent="." instance=ExtResource("2_a7ab5")]
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(8.1469, 0, 0, 0, 1.76266, 0, 0, 0, 6.56546, 0.00822496, 1.16128, -15.5602)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_577m8")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D2"]
+mesh = SubResource("BoxMesh_ihr71")
+skeleton = NodePath("../../StaticBody3D/MeshInstance3D")
+
+[node name="StaticBody3D" type="Area3D" parent="."]
+transform = Transform3D(1.41763, 0, 0, 0, 2.95607, 0, 0, 0, 0.817863, 0, 3.83764, -15.8635)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_litt5")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_wdqjo")

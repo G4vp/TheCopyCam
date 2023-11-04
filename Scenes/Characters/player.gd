@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody3D
 
 const SPEED = 5.0
@@ -5,6 +6,7 @@ const JUMP_VELOCITY = 4.5
 
 @export var MOUSE_SENSITIVITY : float = 0.6
 @export var CAMERA_CONTROLLER : Node3D
+@export var MAX_PHOTOS: int 
 
 
 var TILT_LOWER_LIMIT := deg_to_rad(-90.0)

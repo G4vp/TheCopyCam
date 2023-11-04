@@ -9,7 +9,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_11kdu"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_baok0"]
+[sub_resource type="BoxMesh" id="BoxMesh_1dki1"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER")]
 script = ExtResource("1_owhbk")
@@ -63,8 +63,9 @@ COPY_CAM_CONTROLLER = NodePath("../CameraController/CopyCamController")
 shape = SubResource("CapsuleShape3D_11kdu")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(0.911888, 0, 0, 0, 0.818446, 0, 0, 0, 0.583972, 0, 1.05591, 0.484323)
 visible = false
-mesh = SubResource("CapsuleMesh_baok0")
+mesh = SubResource("BoxMesh_1dki1")
 skeleton = NodePath("../..")
 
 [connection signal="add_photos_frames" from="CameraController/CopyCamController" to="PhotosFrameControl" method="_on_add_photos_frames"]
