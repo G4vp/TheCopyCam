@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://fdlxo75d2rod"]
+[gd_scene load_steps=8 format=3 uid="uid://fdlxo75d2rod"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/player.gd" id="1_owhbk"]
 [ext_resource type="PackedScene" uid="uid://ne5cs2fwwukg" path="res://Scenes/Characters/copy_cam_controller.tscn" id="2_vstre"]
 [ext_resource type="PackedScene" uid="uid://bvmsos1o25l15" path="res://Assets/Models/arms.glb" id="3_7nt2v"]
 [ext_resource type="Script" path="res://Scenes/Characters/photos_frame_control.gd" id="4_fpn8k"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_qvoft"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_11kdu"]
 
@@ -17,18 +19,24 @@ CAMERA_CONTROLLER = NodePath("CameraController")
 
 [node name="CopyCamController" parent="CameraController" node_paths=PackedStringArray("Marker", "CAMERA_RAYCAST") instance=ExtResource("2_vstre")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.116297, -1.11035)
-Marker = NodePath("../Marker3D")
-CAMERA_RAYCAST = NodePath("../RayCast3D")
+Marker = NodePath("../SpringArm3D/Marker3D")
+CAMERA_RAYCAST = NodePath("../SpringArm3D/RayCast3D")
 
 [node name="Camera3D" type="Camera3D" parent="CameraController"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00319719, 0.6, 0.167993)
 
-[node name="RayCast3D" type="RayCast3D" parent="CameraController"]
-transform = Transform3D(1, 0, 0, 0, 0.0101925, -0.999948, 0, 0.999948, 0.0101925, 0, 0.589997, -0.57785)
-target_position = Vector3(0, -3.28, 0)
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraController"]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0.608155, -5.31666e-08)
+shape = SubResource("SeparationRayShape3D_qvoft")
+spring_length = 3.335
 
-[node name="Marker3D" type="Marker3D" parent="CameraController"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.560382, -3.82646)
+[node name="RayCast3D" type="RayCast3D" parent="CameraController/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, -5.96046e-08, 1, 0, -1, -5.96046e-08, 0, 0, 0)
+target_position = Vector3(0, -3.28, 0)
+debug_shape_custom_color = Color(0, 0.741176, 0, 1)
+
+[node name="Marker3D" type="Marker3D" parent="CameraController/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.30476)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="CameraController"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.602372, 0)
