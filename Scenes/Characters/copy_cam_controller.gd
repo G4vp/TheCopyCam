@@ -50,7 +50,9 @@ func _input(event):
 	
 	if event.is_action_pressed("action_1"):
 		# Tirar foto
-		if CAMERA_RAYCAST.is_colliding():
+		if _selection_mode:
+			object_deslection()
+		elif CAMERA_RAYCAST.is_colliding():
 			var object_to_copy = CAMERA_RAYCAST.get_collider() as CopyObject
 			
 			if object_to_copy:
@@ -74,7 +76,6 @@ func _input(event):
 
 func object_deslection():
 	Marker.remove_child(photos_taken[_item_selection_num])
-	
 	_selection_mode = false
 
 func object_selection():

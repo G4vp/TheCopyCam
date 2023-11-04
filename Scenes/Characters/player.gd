@@ -36,7 +36,11 @@ func _unhandled_input(event):
 	if _mouse_input:
 		_rotation_input = -event.relative.x * MOUSE_SENSITIVITY
 		_tilt_input = -event.relative.y * MOUSE_SENSITIVITY
-		
+
+func _input(event):
+	if event.is_action_pressed("reload"):
+		get_tree().reload_current_scene()
+
 func _update_camera(delta):
 	
 	# Rotate Camera using euler rotation
