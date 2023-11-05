@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Environment/Floor.gd" id="1_8ojms"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t4nqy"]
-size = Vector3(2.36419, 1, 2.06168)
+size = Vector3(89.0373, 1, 92.2195)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vb521"]
 albedo_color = Color(0, 0.443137, 0.447059, 1)
@@ -29,4 +29,4 @@ mesh = SubResource("BoxMesh_mdlmg")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
 shape = SubResource("BoxShape3D_5fghb")
 
-[connection signal="body_entered" from="." to="Floor" method="_on_area_3d_player_entered"]
+[connection signal="body_entered" from="." to="." method="_on_area_3d_player_entered"]

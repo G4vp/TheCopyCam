@@ -17,6 +17,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_b3kuv"]
 font_size = 9
+font_color = Color(0.721569, 0.819608, 0.945098, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_11kdu"]
 
@@ -151,6 +152,7 @@ offset_right = 24.0
 texture = ExtResource("5_fngb3")
 
 [node name="walk" type="Label" parent="PauseSystem/PauseControl/KeyBoard"]
+layout_mode = 0
 offset_left = 234.0
 offset_top = -34.0
 offset_right = 261.0
@@ -159,6 +161,7 @@ text = "Walk"
 label_settings = SubResource("LabelSettings_b3kuv")
 
 [node name="jump" type="Label" parent="PauseSystem/PauseControl/KeyBoard"]
+layout_mode = 0
 offset_left = 234.0
 offset_top = 2.0
 offset_right = 261.0
@@ -168,6 +171,7 @@ text = "Jump
 label_settings = SubResource("LabelSettings_b3kuv")
 
 [node name="Restart" type="Label" parent="PauseSystem/PauseControl/KeyBoard"]
+layout_mode = 0
 offset_left = 32.0
 offset_top = -16.0
 offset_right = 89.0
@@ -183,6 +187,7 @@ offset_bottom = 18.0
 texture = ExtResource("9_ho2sg")
 
 [node name="Rotate" type="Label" parent="PauseSystem/PauseControl/KeyBoard"]
+layout_mode = 0
 offset_left = 32.0
 offset_top = 2.0
 offset_right = 92.0
@@ -207,6 +212,7 @@ offset_bottom = 124.0
 texture = ExtResource("6_ut8jn")
 
 [node name="Left" type="Label" parent="PauseSystem/PauseControl/Mouse"]
+layout_mode = 0
 offset_left = 49.0
 offset_top = 68.0
 offset_right = 98.0
@@ -215,11 +221,12 @@ text = "Take Photo"
 label_settings = SubResource("LabelSettings_b3kuv")
 
 [node name="Right" type="Label" parent="PauseSystem/PauseControl/Mouse"]
+layout_mode = 0
 offset_left = 49.0
 offset_top = 100.0
 offset_right = 153.0
 offset_bottom = 116.0
-text = "Select Mode / Put Photo"
+text = "Select Mode / Put Object"
 label_settings = SubResource("LabelSettings_b3kuv")
 
 [node name="TextureRect2" type="TextureRect" parent="PauseSystem/PauseControl/Mouse"]

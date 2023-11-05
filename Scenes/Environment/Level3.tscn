@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://fdlxo75d2rod" path="res://Scenes/Characters/player.tscn" id="1_vty1f"]
 [ext_resource type="Script" path="res://Scenes/Environment/Floor.gd" id="2_ej8s8"]
-[ext_resource type="PackedScene" uid="uid://csdcffe0sjepj" path="res://Scenes/Objects/blue_cube.tscn" id="3_oh2xd"]
+[ext_resource type="PackedScene" uid="uid://drbc4mlu2pion" path="res://Scenes/Objects/green_cube.tscn" id="3_2tqst"]
 [ext_resource type="PackedScene" uid="uid://dq5wf7xl24ys" path="res://Scenes/Objects/blue_rectangle.tscn" id="4_f22yt"]
 
 [sub_resource type="Environment" id="Environment_pmjkc"]
@@ -53,7 +53,7 @@ camera_attributes = SubResource("CameraAttributesPractical_5ybqo")
 
 [node name="Player" parent="." instance=ExtResource("1_vty1f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.34059, 12.9777)
-MAX_PHOTOS = 6
+MAX_PHOTOS = 4
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.827061, 0.562112, 0, -0.562112, 0.827061, 0, 18.0007, 16.1436)
@@ -107,13 +107,11 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_puk15")
 
-[node name="blue_cube" parent="." instance=ExtResource("3_oh2xd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1457, 1.37997, 12.2648)
-mass = 4.0
-
 [node name="blue_rectangle" parent="." instance=ExtResource("4_f22yt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5889, 1.24088, 14)
 
-[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_area_3d_player_entered"]
+[node name="green_cube" parent="." instance=ExtResource("3_2tqst")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6263, 1.90725, 18.5688)
+mass = 5.0
 
-[editable path="blue_cube"]
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_area_3d_player_entered"]
