@@ -1,0 +1,119 @@
+[gd_scene load_steps=17 format=3 uid="uid://kln1n2s81voa"]
+
+[ext_resource type="PackedScene" uid="uid://fdlxo75d2rod" path="res://Scenes/Characters/player.tscn" id="1_vty1f"]
+[ext_resource type="Script" path="res://Scenes/Environment/Floor.gd" id="2_ej8s8"]
+[ext_resource type="PackedScene" uid="uid://csdcffe0sjepj" path="res://Scenes/Objects/blue_cube.tscn" id="3_oh2xd"]
+[ext_resource type="PackedScene" uid="uid://dq5wf7xl24ys" path="res://Scenes/Objects/blue_rectangle.tscn" id="4_f22yt"]
+
+[sub_resource type="Environment" id="Environment_pmjkc"]
+background_mode = 1
+background_color = Color(0.00392157, 0.00784314, 0.0352941, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_5ybqo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t4nqy"]
+size = Vector3(2.36419, 1, 2.06168)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vb521"]
+albedo_color = Color(0, 0.443137, 0.447059, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mdlmg"]
+material = SubResource("StandardMaterial3D_vb521")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5fghb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1di0d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ul0os"]
+albedo_color = Color(0, 0.443137, 0.447059, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_56hxb"]
+material = SubResource("StandardMaterial3D_ul0os")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vgwbi"]
+albedo_color = Color(1, 1, 0.560784, 0.301961)
+emission_enabled = true
+emission = Color(1, 0.960784, 0, 1)
+emission_energy_multiplier = 7.0
+rim_enabled = true
+refraction_enabled = true
+disable_receive_shadows = true
+grow_amount = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_7bs6q"]
+material = SubResource("StandardMaterial3D_vgwbi")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_puk15"]
+
+[node name="Level3" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pmjkc")
+camera_attributes = SubResource("CameraAttributesPractical_5ybqo")
+
+[node name="Player" parent="." instance=ExtResource("1_vty1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.34059, 12.9777)
+MAX_PHOTOS = 6
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.827061, 0.562112, 0, -0.562112, 0.827061, 0, 18.0007, 16.1436)
+shadow_enabled = true
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(39.1411, 0, 0, 0, 0.547669, 0, 0, 0, 40.8739, 0, 0, 0)
+script = ExtResource("2_ej8s8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.99286, 0)
+shape = SubResource("BoxShape3D_t4nqy")
+
+[node name="Floor2" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.324662, 0, 0, 0.342517)
+mesh = SubResource("BoxMesh_mdlmg")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Area3D/Floor2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D/Floor2/StaticBody3D"]
+shape = SubResource("BoxShape3D_5fghb")
+
+[node name="Floor3" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.46166, 0, 0, -0.26912)
+mesh = SubResource("BoxMesh_mdlmg")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Area3D/Floor3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D/Floor3/StaticBody3D"]
+shape = SubResource("BoxShape3D_5fghb")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(8.1469, 0, 0, 0, 3.32104, 0, 0, 0, 6.56546, 0.00632238, 1.64915, -15.5592)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_1di0d")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D2"]
+mesh = SubResource("BoxMesh_56hxb")
+skeleton = NodePath("../../StaticBody3D/MeshInstance3D")
+
+[node name="StaticBody3D" type="Area3D" parent="."]
+transform = Transform3D(1.41763, 0, 0, 0, 2.95607, 0, 0, 0, 0.817863, 0, 5.34728, -15.8635)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_7bs6q")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_puk15")
+
+[node name="blue_cube" parent="." instance=ExtResource("3_oh2xd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1457, 1.37997, 12.2648)
+mass = 4.0
+
+[node name="blue_rectangle" parent="." instance=ExtResource("4_f22yt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5889, 1.24088, 14)
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_area_3d_player_entered"]
+
+[editable path="blue_cube"]

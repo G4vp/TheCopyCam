@@ -60,7 +60,9 @@ func _input(event):
 				if PHOTOS_COUNT < MAX_PHOTOS:
 					PHOTOS_COUNT += 1
 					WHITE_PARTICLES.emitting = true
-					photos_taken.append(object_to_copy.duplicate())
+					var copy = object_to_copy.duplicate() as CopyObject
+					copy.rotation = Vector3()
+					photos_taken.append(copy)
 					add_photos_frames.emit(photos_taken, MAX_PHOTOS)
 				else:
 					RED_PARTICLES.emitting = true
@@ -70,7 +72,9 @@ func _input(event):
 	#		if _selection_mode:
 	#			object_deslection()
 	#		_item_selection_num = (_item_selection_num + 1)%len(photos_taken)
-		
+	if event.is_action_pressed("rotate_y"):
+		if _selection_mode:
+			photos_taken[_item_selection_num].rotate_y(PI/6)
 
 	if event.is_action_pressed("ui_up"):
 		print(photos_taken)

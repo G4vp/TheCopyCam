@@ -40,6 +40,12 @@ func _unhandled_input(event):
 		_tilt_input = -event.relative.y * MOUSE_SENSITIVITY
 
 func _input(event):
+	
+	if event.is_action_pressed("pause"):
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED   
 	if event.is_action_pressed("reload"):
 		get_tree().reload_current_scene()
 
@@ -87,5 +93,3 @@ func player_movement(delta):
 	
 func player_camera():
 	pass
-
-	

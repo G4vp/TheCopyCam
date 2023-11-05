@@ -1,4 +1,4 @@
-extends MeshInstance3D
+extends Area3D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -15,3 +15,4 @@ func _on_area_3d_player_entered(body):
 	var player = body as Player
 	if player:
 		get_tree().reload_current_scene()
+
