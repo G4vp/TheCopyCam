@@ -16,6 +16,8 @@ var PHOTOS_PUT_COUNT : int = 0
 var _item_selection_num : int = 0
 var _selection_mode : bool = false
 
+@onready var audio_camera_shot = $AudioCameraShot
+
 
 var photos_taken: Array[CopyObject] = []
 
@@ -40,6 +42,8 @@ func _input(event):
 				photos_taken.remove_at(_item_selection_num)
 				_item_selection_num = 0
 				PHOTOS_PUT_COUNT += 1
+				audio_camera_shot.stream = load("res://Assets/Sounds/put.wav")
+				audio_camera_shot.play()
 				hide_photos_frames.emit(photos_taken,MAX_PHOTOS,PHOTOS_PUT_COUNT)
 			_selection_mode = false	
 		
@@ -64,8 +68,12 @@ func _input(event):
 					copy.rotation = Vector3()
 					photos_taken.append(copy)
 					add_photos_frames.emit(photos_taken, MAX_PHOTOS)
+					audio_camera_shot.stream = load("res://Assets/Sounds/camerashot.wav")
+					audio_camera_shot.play()
 				else:
 					RED_PARTICLES.emitting = true
+					audio_camera_shot.stream = load("res://Assets/Sounds/nomoreshots.wav")
+					audio_camera_shot.play()
 	
 	#if event.is_action_pressed("inventory_right"):
 	#	if len(photos_taken) > 0:

@@ -20,6 +20,7 @@ func _process(delta):
 
 func _on_play_pressed():
 	get_tree().change_scene_to_file("res://Scenes/Environment/Level1.tscn")
+	MusicController.play_in_game()
 
 
 func _on_quit_pressed():

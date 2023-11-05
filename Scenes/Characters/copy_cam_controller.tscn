@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ne5cs2fwwukg"]
+[gd_scene load_steps=9 format=3 uid="uid://ne5cs2fwwukg"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/copy_cam_controller.gd" id="1_dt8fw"]
 [ext_resource type="PackedScene" uid="uid://cqbw6i5ys45go" path="res://Assets/Models/camera.glb" id="1_jd7b7"]
+[ext_resource type="AudioStream" uid="uid://djadbobdxx4l5" path="res://Assets/Sounds/camerashot.wav" id="3_226qq"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ty2rk"]
 direction = Vector3(0, 90, 1)
@@ -50,3 +51,6 @@ explosiveness = 1.0
 visibility_aabb = AABB(-1.18653, -1.12944, 0.498443, 2.37305, 2.25887, 0.048768)
 process_material = SubResource("ParticleProcessMaterial_ty2rk")
 draw_pass_1 = SubResource("QuadMesh_yj6jv")
+
+[node name="AudioCameraShot" type="AudioStreamPlayer" parent="." index="3"]
+stream = ExtResource("3_226qq")
