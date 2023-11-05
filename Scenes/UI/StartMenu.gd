@@ -10,6 +10,7 @@ extends Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	MusicController.play_menu()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,6 +38,5 @@ func _on_continue_controls_pressed():
 	controls_button.show()
 	title.show()
 	gui_controls.hide()
-
 
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://civ7ghdpn0q43"]
+[gd_scene load_steps=11 format=3 uid="uid://civ7ghdpn0q43"]
 
 [ext_resource type="PackedScene" uid="uid://bw7d85psgg340" path="res://Scenes/Objects/red_cube.tscn" id="1_2rtbj"]
 [ext_resource type="PackedScene" uid="uid://fdlxo75d2rod" path="res://Scenes/Characters/player.tscn" id="1_s84oy"]
+[ext_resource type="Script" path="res://Scenes/Environment/Level1.gd" id="1_utfax"]
 [ext_resource type="PackedScene" uid="uid://cedg63m5svkm6" path="res://Scenes/Environment/floor.tscn" id="2_a7ab5"]
 [ext_resource type="PackedScene" uid="uid://cwnjtmdqliy8d" path="res://Scenes/Environment/Door.tscn" id="4_bquf7"]
 
@@ -20,6 +21,7 @@ albedo_color = Color(0, 0.443137, 0.447059, 1)
 material = SubResource("StandardMaterial3D_icbxx")
 
 [node name="Level1" type="Node3D"]
+script = ExtResource("1_utfax")
 
 [node name="red_cube" parent="." instance=ExtResource("1_2rtbj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
