@@ -18,6 +18,7 @@ camera_attributes = SubResource("CameraAttributesPractical_oun7q")
 
 [node name="Player" parent="." instance=ExtResource("1_sj7s6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+MAX_PHOTOS = 1
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.827061, 0.562112, 0, -0.562112, 0.827061, 0, 18.0007, 16.1436)

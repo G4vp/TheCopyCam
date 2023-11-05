@@ -1,11 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://fdlxo75d2rod"]
+[gd_scene load_steps=17 format=3 uid="uid://fdlxo75d2rod"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/player.gd" id="1_owhbk"]
 [ext_resource type="PackedScene" uid="uid://ne5cs2fwwukg" path="res://Scenes/Characters/copy_cam_controller.tscn" id="2_vstre"]
 [ext_resource type="PackedScene" uid="uid://bvmsos1o25l15" path="res://Assets/Models/arms.glb" id="3_7nt2v"]
 [ext_resource type="Script" path="res://Scenes/Characters/photos_frame_control.gd" id="4_fpn8k"]
+[ext_resource type="Script" path="res://Scenes/Characters/PauseSystem.gd" id="5_e4ib5"]
+[ext_resource type="Texture2D" uid="uid://dmxywit4111c0" path="res://Assets/UI/r.png" id="5_fngb3"]
+[ext_resource type="Texture2D" uid="uid://vsgtaaeeg5n5" path="res://Assets/UI/esc.png" id="5_hl0lh"]
+[ext_resource type="Texture2D" uid="uid://r0bgsfqxya2a" path="res://Assets/UI/right_button.png" id="6_ut8jn"]
+[ext_resource type="Texture2D" uid="uid://m2o1wyr7ugew" path="res://Assets/UI/space.png" id="6_xyb0c"]
+[ext_resource type="Texture2D" uid="uid://db0ix3lqsk1ib" path="res://Assets/UI/wasds.png" id="7_3sgf4"]
+[ext_resource type="Texture2D" uid="uid://2xsr63e8jfhs" path="res://Assets/UI/e.png" id="9_ho2sg"]
+[ext_resource type="Texture2D" uid="uid://daox03s57jvch" path="res://Assets/UI/left_button.png" id="10_pu45q"]
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_qvoft"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b3kuv"]
+font_size = 9
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_11kdu"]
 
@@ -59,6 +70,185 @@ mouse_filter = 2
 script = ExtResource("4_fpn8k")
 COPY_CAM_CONTROLLER = NodePath("../CameraController/CopyCamController")
 
+[node name="PauseSystem" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 7.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+mouse_force_pass_scroll_events = false
+script = ExtResource("5_e4ib5")
+
+[node name="PauseControl" type="Control" parent="PauseSystem"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Pause" type="Control" parent="PauseSystem/PauseControl"]
+anchors_preset = 0
+offset_left = 2.0
+offset_top = 8.0
+offset_right = 42.0
+offset_bottom = 48.0
+mouse_filter = 2
+
+[node name="Esc" type="TextureRect" parent="PauseSystem/PauseControl/Pause"]
+layout_mode = 2
+offset_left = 8.0
+offset_right = 20.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+texture = ExtResource("5_hl0lh")
+
+[node name="Pause" type="Label" parent="PauseSystem/PauseControl/Pause"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = -2.0
+offset_right = 57.0
+offset_bottom = 14.0
+text = "Pause"
+label_settings = SubResource("LabelSettings_b3kuv")
+
+[node name="KeyBoard" type="Control" parent="PauseSystem/PauseControl"]
+anchors_preset = 0
+offset_top = 40.0
+offset_right = 40.0
+offset_bottom = 80.0
+mouse_filter = 2
+
+[node name="Space" type="TextureRect" parent="PauseSystem/PauseControl/KeyBoard"]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 2.0
+offset_right = 226.0
+offset_bottom = 18.0
+texture = ExtResource("6_xyb0c")
+
+[node name="WASD" type="TextureRect" parent="PauseSystem/PauseControl/KeyBoard"]
+layout_mode = 0
+offset_left = 122.0
+offset_top = -34.0
+offset_right = 170.0
+offset_bottom = -2.0
+texture = ExtResource("7_3sgf4")
+
+[node name="R" type="TextureRect" parent="PauseSystem/PauseControl/KeyBoard"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -16.0
+offset_right = 24.0
+texture = ExtResource("5_fngb3")
+
+[node name="walk" type="Label" parent="PauseSystem/PauseControl/KeyBoard"]
+offset_left = 234.0
+offset_top = -34.0
+offset_right = 261.0
+offset_bottom = -18.0
+text = "Walk"
+label_settings = SubResource("LabelSettings_b3kuv")
+
+[node name="jump" type="Label" parent="PauseSystem/PauseControl/KeyBoard"]
+offset_left = 234.0
+offset_top = 2.0
+offset_right = 261.0
+offset_bottom = 18.0
+text = "Jump
+"
+label_settings = SubResource("LabelSettings_b3kuv")
+
+[node name="Restart" type="Label" parent="PauseSystem/PauseControl/KeyBoard"]
+offset_left = 32.0
+offset_top = -16.0
+offset_right = 89.0
+text = "Restart Level"
+label_settings = SubResource("LabelSettings_b3kuv")
+
+[node name="E" type="TextureRect" parent="PauseSystem/PauseControl/KeyBoard"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 2.0
+offset_right = 24.0
+offset_bottom = 18.0
+texture = ExtResource("9_ho2sg")
+
+[node name="Rotate" type="Label" parent="PauseSystem/PauseControl/KeyBoard"]
+offset_left = 32.0
+offset_top = 2.0
+offset_right = 92.0
+offset_bottom = 18.0
+text = "Rotate Object"
+label_settings = SubResource("LabelSettings_b3kuv")
+
+[node name="Mouse" type="Control" parent="PauseSystem/PauseControl"]
+anchors_preset = 0
+offset_left = -17.0
+offset_top = 6.0
+offset_right = 23.0
+offset_bottom = 46.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="PauseSystem/PauseControl/Mouse"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 95.0
+offset_right = 42.0
+offset_bottom = 124.0
+texture = ExtResource("6_ut8jn")
+
+[node name="Left" type="Label" parent="PauseSystem/PauseControl/Mouse"]
+offset_left = 49.0
+offset_top = 68.0
+offset_right = 98.0
+offset_bottom = 84.0
+text = "Take Photo"
+label_settings = SubResource("LabelSettings_b3kuv")
+
+[node name="Right" type="Label" parent="PauseSystem/PauseControl/Mouse"]
+offset_left = 49.0
+offset_top = 100.0
+offset_right = 153.0
+offset_bottom = 116.0
+text = "Select Mode / Put Photo"
+label_settings = SubResource("LabelSettings_b3kuv")
+
+[node name="TextureRect2" type="TextureRect" parent="PauseSystem/PauseControl/Mouse"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 64.0
+offset_right = 36.0
+offset_bottom = 80.0
+texture = ExtResource("10_pu45q")
+
+[node name="QuitButton" type="Button" parent="PauseSystem/PauseControl"]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 99.0
+offset_right = 225.0
+offset_bottom = 130.0
+scale = Vector2(0.75, 0.75)
+text = "QUIT"
+
+[node name="Continue" type="Button" parent="PauseSystem/PauseControl"]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 70.0
+offset_right = 245.0
+offset_bottom = 101.0
+scale = Vector2(0.75, 0.75)
+text = "Continue
+"
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_11kdu")
 
@@ -70,3 +260,5 @@ skeleton = NodePath("../..")
 
 [connection signal="add_photos_frames" from="CameraController/CopyCamController" to="PhotosFrameControl" method="_on_add_photos_frames"]
 [connection signal="hide_photos_frames" from="CameraController/CopyCamController" to="PhotosFrameControl" method="_on_hide_photos_frames"]
+[connection signal="pressed" from="PauseSystem/PauseControl/QuitButton" to="PauseSystem" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="PauseSystem/PauseControl/Continue" to="PauseSystem" method="_on_continue_pressed"]
