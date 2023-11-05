@@ -88,7 +88,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5889, 1.24088, 14)
 
 [node name="green_cube" parent="." instance=ExtResource("3_2tqst")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6263, 1.90725, 18.5688)
-mass = 5.0
+mass = 30.0
 
 [node name="Door" parent="." instance=ExtResource("5_wpeqa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.98968, -15.8635)
