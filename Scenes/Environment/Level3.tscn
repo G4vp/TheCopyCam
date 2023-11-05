@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://kln1n2s81voa"]
+[gd_scene load_steps=15 format=3 uid="uid://kln1n2s81voa"]
 
 [ext_resource type="PackedScene" uid="uid://fdlxo75d2rod" path="res://Scenes/Characters/player.tscn" id="1_vty1f"]
 [ext_resource type="Script" path="res://Scenes/Environment/Floor.gd" id="2_ej8s8"]
 [ext_resource type="PackedScene" uid="uid://drbc4mlu2pion" path="res://Scenes/Objects/green_cube.tscn" id="3_2tqst"]
 [ext_resource type="PackedScene" uid="uid://dq5wf7xl24ys" path="res://Scenes/Objects/blue_rectangle.tscn" id="4_f22yt"]
+[ext_resource type="PackedScene" uid="uid://cwnjtmdqliy8d" path="res://Scenes/Environment/Door.tscn" id="5_wpeqa"]
 
 [sub_resource type="Environment" id="Environment_pmjkc"]
 background_mode = 1
@@ -29,21 +30,6 @@ albedo_color = Color(0, 0.443137, 0.447059, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_56hxb"]
 material = SubResource("StandardMaterial3D_ul0os")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vgwbi"]
-albedo_color = Color(1, 1, 0.560784, 0.301961)
-emission_enabled = true
-emission = Color(1, 0.960784, 0, 1)
-emission_energy_multiplier = 7.0
-rim_enabled = true
-refraction_enabled = true
-disable_receive_shadows = true
-grow_amount = 1.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_7bs6q"]
-material = SubResource("StandardMaterial3D_vgwbi")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_puk15"]
 
 [node name="Level3" type="Node3D"]
 
@@ -95,17 +81,7 @@ shape = SubResource("BoxShape3D_1di0d")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D2"]
 mesh = SubResource("BoxMesh_56hxb")
-skeleton = NodePath("../../StaticBody3D/MeshInstance3D")
-
-[node name="StaticBody3D" type="Area3D" parent="."]
-transform = Transform3D(1.41763, 0, 0, 0, 2.95607, 0, 0, 0, 0.817863, 0, 5.34728, -15.8635)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_7bs6q")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_puk15")
+skeleton = NodePath("")
 
 [node name="blue_rectangle" parent="." instance=ExtResource("4_f22yt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5889, 1.24088, 14)
@@ -113,5 +89,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5889, 1.24088, 14)
 [node name="green_cube" parent="." instance=ExtResource("3_2tqst")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6263, 1.90725, 18.5688)
 mass = 5.0
+
+[node name="Door" parent="." instance=ExtResource("5_wpeqa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.98968, -15.8635)
+scene_path = "res://Scenes/UI/StartMenu.tscn"
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_area_3d_player_entered"]

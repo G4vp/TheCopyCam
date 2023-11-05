@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://yeymdnw0do6a"]
+[gd_scene load_steps=10 format=3 uid="uid://yeymdnw0do6a"]
 
 [ext_resource type="PackedScene" uid="uid://fdlxo75d2rod" path="res://Scenes/Characters/player.tscn" id="1_akjcu"]
 [ext_resource type="PackedScene" uid="uid://cedg63m5svkm6" path="res://Scenes/Environment/floor.tscn" id="2_vwsdv"]
 [ext_resource type="PackedScene" uid="uid://drbc4mlu2pion" path="res://Scenes/Objects/green_cube.tscn" id="3_ohq0x"]
+[ext_resource type="PackedScene" uid="uid://cwnjtmdqliy8d" path="res://Scenes/Environment/Door.tscn" id="4_ggbh1"]
 
 [sub_resource type="Environment" id="Environment_whqyi"]
 background_mode = 1
@@ -17,21 +18,6 @@ albedo_color = Color(0, 0.443137, 0.447059, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_a4ehk"]
 material = SubResource("StandardMaterial3D_b51w3")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uk2pf"]
-albedo_color = Color(1, 1, 0.560784, 0.301961)
-emission_enabled = true
-emission = Color(1, 0.960784, 0, 1)
-emission_energy_multiplier = 7.0
-rim_enabled = true
-refraction_enabled = true
-disable_receive_shadows = true
-grow_amount = 1.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_4o68e"]
-material = SubResource("StandardMaterial3D_uk2pf")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_o1jl8"]
 
 [node name="Level2" type="Node3D"]
 
@@ -60,14 +46,8 @@ shape = SubResource("BoxShape3D_0tk7h")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D2"]
 mesh = SubResource("BoxMesh_a4ehk")
-skeleton = NodePath("../../StaticBody3D/MeshInstance3D")
+skeleton = NodePath("")
 
-[node name="StaticBody3D" type="Area3D" parent="."]
-transform = Transform3D(1.41763, 0, 0, 0, 2.95607, 0, 0, 0, 0.817863, 0, 5.34728, -15.8635)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_4o68e")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_o1jl8")
+[node name="Door" parent="." instance=ExtResource("4_ggbh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.87622, -15.8635)
+scene_path = "res://Scenes/Environment/Level3.tscn"
